@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 class Experiment(QtWidgets.QWidget):
-
+    # init all necessary variables
     def __init__(self):
         super().__init__()
         self.counter = 0
@@ -19,26 +19,18 @@ class Experiment(QtWidgets.QWidget):
                     "If it is BLUE press the F key, if it is YELLOW press the J key.\n" \
                     "Press the space-bar to continue"
         self.state = "intro"
-        self.timestamp = datetime.now()
-        print(self.timestamp)
-        self.times_start_first = []
-        self.times_end_first = []
-        self.times_first = []
-        self.times_start_sec = []
-        self.times_end_sec = []
-        self.times_sec = []
-        self.condition_first = []
-        self.condition = []
-        self.stimu_first = []
-        self.stimu_color_sec = []
-        self.stimu_word_sec = []
-        self.stimu_sec = []
-        self.key_pressed_first = []
-        self.key_pressed_sec =[]
-        self.correct_key_first = []
-        self.correct_key_sec = []
+        self.text_blue = "BLUE"
+        self.text_yellow = "YELLOW"
+        self.timestamp = datetime.timestamp(datetime.now())
+        self.start_time = []
+        self.end_time = []
+        self.stimuli = []
+        self.sec_color_stimuli = []
+        self.sec_word_stimuli = []
+        self.key_pressed = []
         self.init_ui()
 
+    # init UI
     def init_ui(self):
         self.showMaximized()
         self.setWindowTitle('Color Test')
@@ -46,45 +38,40 @@ class Experiment(QtWidgets.QWidget):
         self.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.show()
 
+    # decides on state which display to paint
     def paintEvent(self, event):
         qp = QtGui.QPainter()
         qp.begin(self)
+        qp.setFont(QtGui.QFont('Decorative', 32))
         if self.state == "intro":
-            self.draw_intro(event, qp)
+            qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.text)
         elif self.state == "first":
-            self.condition.append(1)
             self.draw_first(event, qp)
         elif self.state == "interlude":
             self.draw_interlude(event, qp)
         elif self.state == "second":
-            self.condition.append(2)
             self.draw_second(event, qp)
         elif self.state == "end":
-            self.calculate()
             self.logging()
-            self.draw_end(event, qp)
+            self.text = "Thanks for your participation"
+            qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.text)
 
-    def draw_intro(self, event, qp):
-        qp.setFont(QtGui.QFont('Decorative', 32))
-        qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.text)
-
+    # draws first condition
     def draw_first(self, event, qp):
-        self.times_start_first.append(time.time())
+        self.start_time.append(time.time())
         cond = random.randint(0, 1)
-        qp.setFont(QtGui.QFont('Decorative', 32))
-        text_blue = "BLUE"
-        text_yellow = "YELLOW"
-        qp.drawText(event.rect(), QtCore.Qt.AlignLeft, text_blue)
-        qp.drawText(event.rect(), QtCore.Qt.AlignRight, text_yellow)
+        qp.drawText(event.rect(), QtCore.Qt.AlignLeft, self.text_blue)
+        qp.drawText(event.rect(), QtCore.Qt.AlignRight, self.text_yellow)
         if cond == 0:
-            self.stimu_first.append('blue')
+            self.stimuli.append('blue')
             qp.setBrush(QtGui.QColor(34, 34, 200))
         elif cond == 1:
-            self.stimu_first.append('yellow')
+            self.stimuli.append('yellow')
             qp.setBrush(QtGui.QColor(255, 215, 0))
         rect = QtCore.QRect(830, 300, 200, 200)
         qp.drawRoundedRect(rect, 10.0, 10.0)
 
+    # draws interlude between first and second condition
     def draw_interlude(self, event, qp):
         self.text = "Thank you for the first round. Now it gets a bit more difficult.\n" \
                     "Put your left pointer finger on the F key. Put your right pointer finger on the J key.\n" \
@@ -92,42 +79,34 @@ class Experiment(QtWidgets.QWidget):
                     "You have to look at the word and press the accordingly key.\n" \
                     "If it is BLUE press the F key, if it is YELLOW press the J key.\n" \
                     "Press the space-bar to continue"
-        qp.setFont(QtGui.QFont('Decorative', 32))
         qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.text)
 
+    # draws second condition
     def draw_second(self, event, qp):
-        self.times_start_sec.append(time.time())
+        self.start_time.append(time.time())
         cond_rec = random.randint(0, 1)
         cond_word = random.randint(0, 1)
-        qp.setFont(QtGui.QFont('Decorative', 32))
-        text_blue = "BLUE"
-        text_yellow = "YELLOW"
-        qp.drawText(event.rect(), QtCore.Qt.AlignLeft, text_blue)
-        qp.drawText(event.rect(), QtCore.Qt.AlignRight, text_yellow)
+        qp.drawText(event.rect(), QtCore.Qt.AlignLeft, self.text_blue)
+        qp.drawText(event.rect(), QtCore.Qt.AlignRight, self.text_yellow)
+        # randomized order for the color of the rectangle
         if cond_rec == 0:
-            self.stimu_color_sec.append('blue')
+            self.sec_color_stimuli.append('blue')
             qp.setBrush(QtGui.QColor(34, 34, 200))
         elif cond_rec == 1:
-            self.stimu_color_sec.append('yellow')
+            self.sec_color_stimuli.append('yellow')
             qp.setBrush(QtGui.QColor(255, 215, 0))
         rect = QtCore.QRect(860, 320, 200, 200)
         qp.drawRoundedRect(rect, 10.0, 10.0)
+        qp.setPen(QtGui.QColor(255, 255, 255))
+        # randomized order for the word (important stimuli)
         if cond_word == 0:
-            self.stimu_word_sec.append('blue')
-            qp.setPen(QtGui.QColor(255, 255, 255))
-            qp.setFont(QtGui.QFont('Decorative', 32))
-            qp.drawText(event.rect(), QtCore.Qt.AlignCenter, text_blue)
+            self.sec_word_stimuli.append('blue')
+            qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.text_blue)
         elif cond_word == 1:
-            self.stimu_word_sec.append('yellow')
-            qp.setPen(QtGui.QColor(255, 255, 255))
-            qp.setFont(QtGui.QFont('Decorative', 32))
-            qp.drawText(event.rect(), QtCore.Qt.AlignCenter, text_yellow)
+            self.sec_word_stimuli.append('yellow')
+            qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.text_yellow)
 
-    def draw_end(self, event, qp):
-        self.text = "Thanks for your participation"
-        qp.setFont(QtGui.QFont('Decorative', 32))
-        qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.text)
-
+    # handles key-presses
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Space:
             if self.state == "intro":
@@ -138,78 +117,59 @@ class Experiment(QtWidgets.QWidget):
                 self.state = "second"
                 self.update()
         if event.key() == QtCore.Qt.Key_F:
-            if self.counter < 10 and self.state == "first":
+            if self.counter < 10:
                 self.counter += 1
-                self.times_end_first.append(time.time())
-                self.key_pressed_first.append('F')
-            if self.counter < 10 and self.state == "second":
-                self.counter += 1
-                self.times_end_sec.append(time.time())
-                self.key_pressed_sec.append('F')
+                self.end_time.append(time.time())
+                self.key_pressed.append('F')
             if self.counter == 10 and self.state == "first":
                 self.state = "interlude"
             if self.counter == 10 and self.state == "second":
                 self.state = "end"
             self.update()
         if event.key() == QtCore.Qt.Key_J:
-            if self.counter < 10 and self.state == "first":
+            if self.counter < 10:
                 self.counter += 1
-                self.times_end_first.append(time.time())
-                self.key_pressed_first.append('J')
-            if self.counter < 10 and self.state == "second":
-                self.counter += 1
-                self.times_end_sec.append(time.time())
-                self.key_pressed_sec.append('J')
+                self.end_time.append(time.time())
+                self.key_pressed.append('J')
             if self.counter == 10 and self.state == "first":
                 self.state = "interlude"
             if self.counter == 10 and self.state == "second":
                 self.state = "end"
             self.update()
 
-    def calculate(self):
-        for i in range(len(self.times_start_first)):
-            self.times_first.append(self.times_end_first[i] - self.times_start_first[i])
-        for i in range(len(self.times_start_sec)):
-            self.times_sec.append(self.times_end_sec[i] - self.times_start_sec[i])
-
     def logging(self):
+        # get participant_id from input
         part_id = sys.argv[1]
-        # print(part_id)
-        correct_key_first = []
-        correct_key_sec = []
-        # print(self.stimu_first)
-        print(self.key_pressed_first)
-        for i in self.stimu_first:
+        time_calc = []
+        correct_key = []
+        condition = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+        # calculate time for first and second condition
+        for i in range(len(self.start_time)):
+            time_calc.append(self.end_time[i] - self.start_time[i])
+        # get correct key from stimulus for the first condition
+        for i in self.stimuli:
             if i == 'blue':
-                correct_key_first.append('F')
+                correct_key.append('F')
             elif i == 'yellow':
-                correct_key_first.append('J')
-        print(correct_key_first)
-        for i in range(len(self.stimu_color_sec)):
-            self.stimu_sec.append(self.stimu_color_sec[i] +  "-" + self.stimu_word_sec[i])
-            # print(self.stimu_sec)
-        # print(self.key_pressed_sec)
-        for i in self.stimu_word_sec:
+                correct_key.append('J')
+        # get correct key from stimulus for the second condition
+        for i in self.sec_word_stimuli:
             if i == 'blue':
-                correct_key_sec.append('F')
+                correct_key.append('F')
             elif i == 'yellow':
-                correct_key_sec.append('J')
-        # print(correct_key_sec)
-        # print(self.times_first)
-        # print(self.times_sec)
-        # print(self.condition)
+                correct_key.append('J')
+        # concatenate both stimuli of the second conditions
+        for i in range(len(self.sec_color_stimuli)):
+            self.stimuli.append(self.sec_color_stimuli[i] + "-" + self.sec_word_stimuli[i])
+
+        # construct csv data structure and add all data
         df = pd.DataFrame(columns=['participant_id', 'condition', 'stimulus', 'pressed_key', 'correct_key',
                                    'reaction_time_in_s', 'timestamp'])
-        for i in range(len(self.key_pressed_first)):
-            df = df.append(pd.Series([part_id, 1, self.stimu_first[i], self.key_pressed_first[i],
-                                      correct_key_first[i], self.times_first[i], self.timestamp], index=df.columns),
+        for i in range(len(self.key_pressed)):
+            df = df.append(pd.Series([part_id, condition[i], self.stimuli[i], self.key_pressed[i],
+                                      correct_key[i], time_calc[i], self.timestamp], index=df.columns),
                            ignore_index=True)
-        for i in range(len(self.key_pressed_sec)):
-            df = df.append(pd.Series([part_id, self.condition[10+i], self.stimu_sec[i], self.key_pressed_sec[i],
-                                      correct_key_sec[i], self.times_sec[i], self.timestamp], index=df.columns),
-                           ignore_index=True)
-        df.to_csv('log.csv', index=False)
-        print(df)
+        df.to_csv('log_' + str(part_id) + '.csv', index=False)
 
 
 def main():
