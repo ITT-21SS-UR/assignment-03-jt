@@ -169,8 +169,8 @@ class Experiment(QtWidgets.QWidget):
                                    'reaction_time_in_s', 'timestamp_start', 'timestamp_end'])
         for i in range(len(self.key_pressed)):
             df = df.append(pd.Series([part_id, condition[i], self.stimuli[i], self.key_pressed[i],
-                                      correct_key[i], time_calc[i], self.timestamp_start, timestamp_end], index=df.columns),
-                           ignore_index=True)
+                                      correct_key[i], time_calc[i], self.timestamp_start, timestamp_end],
+                                     index=df.columns), ignore_index=True)
         df.to_csv('log_' + str(part_id) + '.csv', index=False)
 
 
