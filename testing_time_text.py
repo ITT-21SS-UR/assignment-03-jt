@@ -21,7 +21,7 @@ class Experiment(QtWidgets.QWidget):
         self.state = "intro"
         self.text_blue = "BLUE"
         self.text_yellow = "YELLOW"
-        self.timestamp = datetime.timestamp(datetime.now())
+        self.timestamp_start = datetime.timestamp(datetime.now())
         self.start_time = []
         self.end_time = []
         self.stimuli = []
@@ -140,6 +140,8 @@ class Experiment(QtWidgets.QWidget):
     def logging(self):
         # get participant_id from input
         part_id = sys.argv[1]
+        # get end timestamp
+        timestamp_end = datetime.timestamp(datetime.now())
         time_calc = []
         correct_key = []
         condition = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
@@ -164,10 +166,10 @@ class Experiment(QtWidgets.QWidget):
 
         # construct csv data structure and add all data
         df = pd.DataFrame(columns=['participant_id', 'condition', 'stimulus', 'pressed_key', 'correct_key',
-                                   'reaction_time_in_s', 'timestamp'])
+                                   'reaction_time_in_s', 'timestamp_start', 'timestamp_end'])
         for i in range(len(self.key_pressed)):
             df = df.append(pd.Series([part_id, condition[i], self.stimuli[i], self.key_pressed[i],
-                                      correct_key[i], time_calc[i], self.timestamp], index=df.columns),
+                                      correct_key[i], time_calc[i], self.timestamp_start, timestamp_end], index=df.columns),
                            ignore_index=True)
         df.to_csv('log_' + str(part_id) + '.csv', index=False)
 
