@@ -1,7 +1,0 @@
-During testing we noticed two things which could be improved in further studies:
-1.	The explanation of the study was only available in English, just like the color names. Therefore it was difficult
-for subjects to understand the exactly what they had to do and further explanations or translations were required
-2.	After pressing the right key, the next color or color/text appeared. Since the appearance was randomized, the same
-combinations could appear several times in a row. It was not always obvious whether the program reacted to the
-keystroke and the same combination just happened to appear again, or whether it did not react. This was often
-confusing for the subjects, as they did not know whether to press the button again or wait for a reaction.
