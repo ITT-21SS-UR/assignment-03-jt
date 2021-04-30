@@ -1,0 +1,18 @@
+a.
+The advantage of using a direct point device is that you can directly point/touch the destination you want to change
+instead of having to use an external device as a mouse to transfer the input to the device. It is therefore easier and
+you don’t need the focus on something outside the device because the f.e. finger is at the same physical position as
+the destination and no mentally translation between the hand and the computer to change something inside of the device
+as with a mouse or touchpad is needed. Also the movement of a cursor moved my the mouse is usually different from the
+actual mouse movement so that also needs to be mentally translated.  But sometime it also doesn’t make sense to use a
+direct pointing device as for example of you want to show something in front of a group. When transferring the screen
+to a large wall it is impossible to operate it with touch, there the use of an indirect pointing device as a computer
+mouse or the touchpad is suitable.
+
+b.
+I would say “Shift” is a direct (the finger points directly at the destination and is at the same physical position),
+absolute (the position of the pointer on screen is consistent with the location of input device),
+isometric (is measures the force of the touch)
+
+c.
+In the study they used an IPAQ PDA with the screen size of 550x730mm
