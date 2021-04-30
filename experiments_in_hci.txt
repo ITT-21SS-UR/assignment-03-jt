@@ -1,0 +1,50 @@
+1.
+Self-reported measurements for task performance can sometimes differ from objectively measured values. This is due to
+the subjective perception of the experiment by each participant. Therefore, it is recommended to use a mixture of the
+two and thus achieve a balanced result.
+
+2.
+The advantages of a research hypothesis include its close connection to theory. Thus, they help to summarize previous
+work and thus provide an orientation to motivate and design one's own work. In addition, their structure can help to
+report an experiment more easily. They help to formulate a research question by bringing clarity to the research issue.
+
+Limitations of research hypotheses are the biases they can create. They make you focus on a particular issue. Thus
+they can be an obstacle for other interesting results, because one concentrates too much only on the hypotheses.
+Moreover, one runs the risk of formulating the null hypothesis only so that one can reject it. However, one could
+sometimes conclude more interesting results if something is wrong and thus benefit from it to learn from it.
+
+3.
+Testing is a very important part of studies and participants must be selected very carefully. In general, participants
+should always be diverse, with different backgrounds, knowledge and fields of interest and of course both men and
+women from different age groups. This is to ensure that the study is not falsified by overly biased subjects and that
+the final product can be used by as many people as possible. For example informatics students, including media
+informatics students are familiar with technic, computers and programming and therefore have more experience and a
+greater knowledge in that field as other students.
+If you test an application which would be mainly used by (media) computer scientists, than there would be an advantage
+with testing only them. They would probably have a similar knowledge and therefore you could start right away with
+more complicated tests without explaining basic techniques, as this knowledge can be taken for granted and thus get
+results faster. Limitations are that there are also differences in computer scientists and therefore errors or
+difficulties can be overlooked.
+One example for a study where it won’t be problematic to test only media informatics students is an application to
+for example track the input in an development environment and then offer user help with errors and even fade in help
+for the respective error. These applications are mainly used by informatic students which is why the future user group
+can be easily narrowed down. Why should you test participants from other study programs if they would barely use these
+applications? But the most important point is that it is not profitable to test such an application on a large scale
+if the future users are mostly from one field of expertise. Most errors and problems will be found during tests with
+these participants and therefore at the end you will have a useful and mainly bug free application which will work
+perfectly with it’s target group.
+It is different, if someone would like to do a study on a topic that affects a larger target group and needs to be
+tested by a broader sample of participants as for example a map application. Maps are used by people of all ages,
+gender and background. Therefore, it is not sufficient to test only students of a certain study program or even only
+students in general. Older people might have very different problems while using this application than younger people.
+Participants under the age of 18 might predominantly use the app to figure out how to walk or cycle from one place to
+another while older participants might use a car and therefore need a map of streets instead of a map of pedestrian
+routes. Also very important is the UI. Younger people in particular are generally more accustomed to using mobile
+devices or computers than older population groups, which is why more prior knowledge can be assumed among them.
+Therefore studies should include a broad sample of different age groups as otherwise some future user might not know
+how to use the application and are excluded from using it.
+In general the key to a successful study is to find the target group and test accordingly to get the broadest possible
+opinion and to discover as many errors and problems as possible. If the target group can be easily narrowed down, it
+is fine to test only a small, specific number of subjects, as this can yield good results. In most cases however, it is
+best to test as large a sample as possible from as large an environment as possible in order to detect any errors or
+problems early on and thus achieve good results in the end.
