@@ -1,7 +1,13 @@
-During testing we noticed two things which could be improved in further studies:
-1.	The explanation of the study was only available in English, just like the color names. Therefore it was difficult
-for subjects to understand the exactly what they had to do and further explanations or translations were required
-2.	After pressing the right key, the next color or color/text appeared. Since the appearance was randomized, the same
-combinations could appear several times in a row. It was not always obvious whether the program reacted to the
-keystroke and the same combination just happened to appear again, or whether it did not react. This was often
-confusing for the subjects, as they did not know whether to press the button again or wait for a reaction.
+For our experiment, six people were tested. Due to different ages and different skills in using the computer the
+results were different and we also encountered different issues with the tasks.
+The limitation was that the explanation of the study was only available in English, just like the color names.
+Therefore it was difficult for subjects to understand completely what they had to do and further explanations or
+translations were required.
+During testing we noticed one thing which could be improved in further studies, after pressing the right key, the
+next color or color/text appeared. Since the appearance was randomized, the same combinations could appear several
+times in a row. It was not always obvious whether the program reacted to the keystroke and the same combination just
+happened to appear again, or whether it did not react. This was often confusing for the subjects, as they did not know
+whether to press the button again or wait for a reaction.
+Our participants where of different age and hat different skills with using the computer. Due to the lack of a
+questionnaire on these data, they could unfortunately not be taken into account in the later evaluation.
+This could be improved in further studies.

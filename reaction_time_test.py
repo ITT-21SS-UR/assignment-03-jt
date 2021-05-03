@@ -7,6 +7,17 @@ import time
 import pandas as pd
 from datetime import datetime
 
+""" We distributed the workload evenly on both team-members.
+We developed the study together and discussed the necessary work steps in several meetings.
+We decided to split the tasks accordingly:
+- 3.1: Juliane & Tanja 
+- 3.2: Developed the base structure together and Juliane formulated the text
+- 3.3: According to the base structure developed together Tanja implemented the code
+- 3.4: Juliane & Tanja both tested 3 subjects and wrote a report
+- 3.5: Analyzed the data together and Tanja wrote the jupyter notebook
+- 3.6: Juliane formulated the answers.
+"""
+
 
 class Experiment(QtWidgets.QWidget):
     # init all necessary variables
